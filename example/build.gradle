@@ -30,4 +30,5 @@ dependencies {
     compile project(':latte-compiler')
     annotationProcessor project(':latte-ec')
     compile project(':latte-core')
+    compile project(':latte-ec')
 }
