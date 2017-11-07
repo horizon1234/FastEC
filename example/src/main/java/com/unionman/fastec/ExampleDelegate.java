@@ -13,7 +13,7 @@ import com.unionman.latte.delegates.LatteDelegate;
 public class ExampleDelegate extends LatteDelegate {
     @Override
     public Object setLayout() {
-        return null;
+        return R.layout.delegate_example;
     }
 
     @Override

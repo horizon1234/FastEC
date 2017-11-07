@@ -12,7 +12,7 @@ public class ExampleActivity extends ProxyActivity {
 
     @Override
     public LatteDelegate setRootDelegate() {
-        return null;
+        return new ExampleDelegate();
     }
 
 }
