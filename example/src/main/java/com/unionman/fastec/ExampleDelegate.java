@@ -3,6 +3,7 @@ package com.unionman.fastec;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.Toast;
 
 import com.unionman.latte.delegates.LatteDelegate;
 import com.unionman.latte.net.RestClient;
@@ -22,17 +23,17 @@ public class ExampleDelegate extends LatteDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-
+        testRestClient();
     }
 
     private void testRestClient(){
         RestClient.builder()
-             .url("")
-                .params("","")
+             .url("https://www.baidu.com/")
+                .loader(getContext())
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-
+                        //Toast.makeText(getContext(),response,Toast.LENGTH_LONG).show();
                     }
                 })
                 .failure(new IFailure() {
@@ -47,6 +48,7 @@ public class ExampleDelegate extends LatteDelegate {
 
                     }
                 })
-                .build();
+                .build()
+                .get();
     }
 }

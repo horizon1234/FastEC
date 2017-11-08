@@ -1,9 +1,12 @@
 package com.unionman.latte.net;
 
+import android.content.Context;
+
 import com.unionman.latte.net.callback.IError;
 import com.unionman.latte.net.callback.IFailure;
 import com.unionman.latte.net.callback.IRequest;
 import com.unionman.latte.net.callback.ISuccess;
+import com.unionman.latte.ui.LoaderStyle;
 
 import java.util.Map;
 import java.util.WeakHashMap;
@@ -24,6 +27,8 @@ public class RestClientBuilder {
     private  IFailure mIFailure;
     private  IError mIError;
     private  RequestBody mBody;
+    private Context mContext;
+    private LoaderStyle mLoaderStyle;
 
     RestClientBuilder(){
 
@@ -69,7 +74,19 @@ public class RestClientBuilder {
         return this;
     }
 
+    public final RestClientBuilder loader(Context context,LoaderStyle style){
+        this.mContext = context;
+        this.mLoaderStyle = style;
+        return this;
+    }
+
+    public final RestClientBuilder loader(Context context){
+        this.mContext = context;
+        this.mLoaderStyle = LoaderStyle.BallPulseIndicator;
+        return this;
+    }
+
     public final RestClient build(){
-        return new RestClient(mUrl,PARAMS,mIRequest,mISuccess,mIFailure,mIError,mBody);
+        return new RestClient(mUrl,PARAMS,mIRequest,mISuccess,mIFailure,mIError,mBody,mContext,mLoaderStyle);
     }
 }
