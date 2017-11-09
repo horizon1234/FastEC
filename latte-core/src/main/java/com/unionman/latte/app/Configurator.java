@@ -2,20 +2,25 @@ package com.unionman.latte.app;
 
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
+import com.wang.avi.Indicator;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.WeakHashMap;
+
+import okhttp3.Interceptor;
 
 /**
  * Created by zyh on 2017/11/1.
  */
 
 public class Configurator {
-    private static final HashMap<String,Object> LATTE_CONFIGS = new HashMap<>();
+    private static final HashMap<Object,Object> LATTE_CONFIGS = new HashMap<>();
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
+    private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
 
     private Configurator(){
         LATTE_CONFIGS.put(ConfigType.CONFIG_READY.name(),false);
@@ -29,7 +34,7 @@ public class Configurator {
         return Holder.INSTANCE;
     }
 
-    final HashMap<String,Object> getLatteConfigs(){
+    final HashMap<Object,Object> getLatteConfigs(){
         return LATTE_CONFIGS;
     }
 
@@ -45,6 +50,18 @@ public class Configurator {
 
     public final Configurator withIcon(IconFontDescriptor descriptor){
         ICONS.add(descriptor);
+        return this;
+    }
+
+    public final Configurator withInterceptors(ArrayList<Interceptor> interceptors){
+        INTERCEPTORS.addAll(interceptors);
+        LATTE_CONFIGS.put(ConfigType.INTERCEPTOR.name(),INTERCEPTORS);
+        return this;
+    }
+
+    public final Configurator withInterceptor(Interceptor interceptor){
+        INTERCEPTORS.add(interceptor);
+        LATTE_CONFIGS.put(ConfigType.INTERCEPTOR.name(),INTERCEPTORS);
         return this;
     }
 

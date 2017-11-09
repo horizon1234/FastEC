@@ -1,6 +1,7 @@
 package com.unionman.latte.net.callback;
 
 import android.os.Handler;
+import android.util.Log;
 
 import com.unionman.latte.ui.LatteLoader;
 import com.unionman.latte.ui.LoaderStyle;
@@ -55,6 +56,7 @@ public class RequestCallbacks implements Callback<String>{
 
     @Override
     public void onFailure(Call<String> call, Throwable t) {
+        Log.i("ssss", t.toString());
         if(FAILURE != null){
             FAILURE.onFailure();
         }

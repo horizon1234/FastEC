@@ -23,11 +23,11 @@ public final class  Latte {
         return Configurator.getInstance();
     }
 
-    public static HashMap<String,Object> getConfiguration(){
+    public static HashMap<Object,Object> getConfiguration(){
         return Configurator.getInstance().getLatteConfigs();
     }
 
-    public static Context getApplication(){
+    public static Context getApplicationContext(){
         return (Context) getConfiguration().get(ConfigType.APPLICATION_CONTEXT.name());
     }
 }
